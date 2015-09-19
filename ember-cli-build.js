@@ -6,6 +6,20 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+  app.import({
+    development: 'bower_components/soundmanager/swf/soundmanager2_debug.swf',
+    production: 'bower_components/soundmanager/swf/soundmanager2.swf'
+  });
+  app.import({
+    development: 'bower_components/soundmanager/script/soundmanager2.js',
+    production: 'bower_components/soundmanager/script/soundmanager2-nodebug-jsmin.js'
+  });
+  app.import('bower_components/ember-cli-soundmanager-shim/soundmanager2-shim.js', {
+    exports: {
+      soundManager: ['default']
+    }
+  });
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
