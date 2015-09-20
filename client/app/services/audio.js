@@ -10,9 +10,14 @@ const {
 export default Ember.Service.extend({
   queue: emberArray([]),
   addToQueue(obj) {
-     const queue = get(this, 'queue');
-     const sound = soundManager.createSound(obj);
-     queue.pushObject(sound.id);
+    soundManager.onready(() => {
+      const queue = get(this, 'queue');
+      const sound = soundManager.createSound(obj);
+      queue.pushObject(sound.id);
+    });
+  },
+  addBatchToQueue(objectArray) {
+    objectArray.forEach(obj => this.addToQueue(obj));
   },
   removeFromQueue(obj) {
     const queue = get(this, 'queue');

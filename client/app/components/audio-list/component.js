@@ -5,6 +5,8 @@ const {
 } = Ember;
 
 export default Component.extend({
+  tagName: 'ul',
+  classNames: ['list', 'list--h-to-v'],
   actions: {
     myStartAction: function(content) {
      //console.log('myStartAction', content);

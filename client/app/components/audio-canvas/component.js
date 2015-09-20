@@ -1,10 +1,22 @@
 import Ember from 'ember';
 
 const {
-  Component
+  Component,
+  computed,
+  get
 } = Ember;
 
 export default Component.extend({
+  tagName: '',
+
+  chosenPhrase: computed('phrase.words', function() {
+    const wordIds = get(this, 'phrase.words');
+    const availableAudio = get(this, 'availableAudio');
+    const chosenWordObjects = wordIds.map(id => availableAudio.findBy('id', id));
+
+    return chosenWordObjects;
+  }),
+
   actions: {
     addToQueue(obj, ops) {
       this.sendAction('addToQueue', obj, ops);

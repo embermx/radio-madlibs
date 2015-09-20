@@ -9,10 +9,10 @@ const {
 } = Ember;
 
 export default Component.extend({
-  actions: {
-    remove() {
-      const word = get(this, 'word');
-      this.sendAction('remove', word);
-    }
+  tagName: 'button',
+  classNames: ['btn', 'btn--big', 'btn--row'],
+  click() {
+    const word = get(this, 'word');
+    this.sendAction('remove', word);
   }
 });

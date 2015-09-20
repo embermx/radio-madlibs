@@ -1,17 +1,13 @@
 import Ember from 'ember';
+import ActionHandlerMixin from 'radio-madlibs/mixins/action-handler';
 
 const {
   Route,
-  inject,
   get,
-  computed,
   RSVP
 } = Ember;
 
-export default Route.extend({
-  audio: inject.service(),
-  audioQueue: computed('audio.queue'),
-
+export default Route.extend(ActionHandlerMixin, {
   model() {
     const store = get(this, 'store');
     const fixtures = get(this, 'files');
@@ -20,31 +16,5 @@ export default Route.extend({
       availableAudio: fixtures,
       phrase: store.createRecord('phrase', {words: []})
      });
-  },
-
-
-  actions: {
-    addToQueue(model /*, ops*/) {
-      const audio = get(this, 'audio');
-      audio.addToQueue(model);
-      this._addToChosenPhrases(model);
-    },
-    removeWord(word) {
-      this._removeWordFromModel(word);
-      this._removeWordFromQueue(word);
-    }
-  },
-
-  _addToChosenPhrases(obj) {
-    const words = get(this, 'currentModel.phrase.words');
-    words.pushObject(obj);
-  },
-  _removeWordFromModel(word) {
-    const words = get(this, 'currentModel.phrase.words');
-    words.removeObject(word);
-  },
-  _removeWordFromQueue(word) {
-    const audio = get(this, 'audio');
-    audio.removeFromQueue(word);
   }
 });
