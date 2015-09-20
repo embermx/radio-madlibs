@@ -22,14 +22,13 @@ app.get('/:phrase_id', function(req, res) {
         res.status(500).json({message: "that's an error", error: err});
         return console.error('error running query', err);
       }
-      res.json({id: id, words: result});
+      res.json({id: id, words: result.rows});
     });
   });
 });
 
 app.post('/', function(req, res) {
-  var body = req.body,
-    words;
+  var words = req.body.words;
 
   if (!words || !words.length) {
     res.status(422).json({error: 'words required'});
