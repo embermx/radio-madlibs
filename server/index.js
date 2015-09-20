@@ -28,7 +28,8 @@ app.get('/:phrase_id', function(req, res) {
 });
 
 app.post('/phrases', function(req, res) {
-  var words = req.body.words;
+  var phrase = req.body.phrase,
+    words = phrase.words;
 
   if (!words || !words.length) {
     res.status(422).json({error: 'words required'});
