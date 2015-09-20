@@ -17,8 +17,8 @@ export default Route.extend({
     const fixtures = get(this, 'files');
 
     return RSVP.hash({
-      availableAudio: fixtures.map(f => store.createRecord('word', f)),
-      phrase: store.createRecord('phrase')
+      availableAudio: fixtures,
+      phrase: store.createRecord('phrase', {words: []})
      });
   },
 
@@ -26,8 +26,7 @@ export default Route.extend({
   actions: {
     addToQueue(model /*, ops*/) {
       const audio = get(this, 'audio');
-      const modelProps = model.getProperties('id', 'url');
-      audio.addToQueue(modelProps);
+      audio.addToQueue(model);
       this._addToChosenPhrases(model);
     },
     removeWord(word) {

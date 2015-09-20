@@ -36,7 +36,6 @@
     "ember-data": "1.13.13",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-drag-drop": "^0.1.6",
-    "ember-export-application-global": "^1.0.3",
-    "emberfire": "1.5.0"
+    "ember-export-application-global": "^1.0.3"
   }
 }
