@@ -25,7 +25,7 @@ app.get('/phrases/:phrase_id', function(req, res) {
         res.status(500).json({message: "that's an error", error: err});
         return console.error('error running query', err);
       }
-      res.json({id: id, words: result.rows});
+      res.json({phras: {id: id, words: result.rows}});
     });
   });
 });
