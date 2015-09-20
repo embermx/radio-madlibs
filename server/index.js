@@ -57,9 +57,9 @@ app.post('/phrases', function(req, res) {
   });
 });
 
-app.put('/phrases', function(req, res) {
+app.put('/phrases/:phrase_id', function(req, res) {
   var phrase = req.body.phrase,
-    id = phrase.id,
+    id = req.params.phrase_id,
     words = phrase ? phrase.words : false;
 
   if (!words || !words.length) {
