@@ -40,7 +40,7 @@ app.post('/phrases', function(req, res) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('INSERT INTO radiomadlib_phrases (words) VALUES ({$1}) RETURNING id', [words.join(',')], function(err, results) {
+    client.query("INSERT INTO radiomadlib_phrases (words) VALUES ('{$1}') RETURNING id", [words.join(',')], function(err, results) {
       done();
       if (err) {
         res.status(500).json({message: "that's an error", erro: err});
