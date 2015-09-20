@@ -9,8 +9,11 @@ var express = require('express'),
 app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.get('/:phrase_id', function(req, res) {
+app.get('/phrases/:phrase_id', function(req, res) {
   var id = req.params.phrase_id;
+  if (!id) {
+    res.status(422).json({message: 'must provide an id'});
+  }
 
   pg.connect(connectionString, function(err, client, done) {
     if (err) {
@@ -32,7 +35,7 @@ app.post('/phrases', function(req, res) {
     words = phrase.words;
 
   if (!words || !words.length) {
-    res.status(422).json({error: 'words required'});
+    res.status(422).json({message: 'words required'});
     return;
   }
 
@@ -40,7 +43,10 @@ app.post('/phrases', function(req, res) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("INSERT INTO radiomadlib_phrases (words) VALUES ('{$1}') RETURNING id", [words.join(',')], function(err, results) {
+    var wordIds = words.join(','),
+      query = "INSERT INTO radiomadlib_phrases (words) VALUES ('{" + wordIds + "}') RETURNING id";
+
+    client.query(query, function(err, results) {
       done();
       if (err) {
         res.status(500).json({message: "that's an error", erro: err});
