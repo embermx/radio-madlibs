@@ -1,0 +1,72 @@
+@mixin mq($mq...) {
+    @if length(keywords($mq)) == 1 {
+        @media only screen and #{$mq} {
+            @content;
+        }
+    } @else {
+        $query: 'only screen';
+
+        @each $media in $mq {
+            $query: #{$query} and #{$media};
+        }
+
+        @media #{$query} {
+            @content;
+        }
+    }
+}
+
+// MEDIA QUERIES
+
+$narrow: 421;
+$medium: 801;
+$large: 1025;
+
+$large-and-up: "(min-width: #{$large}px)";
+$medium-and-up: "(min-width: #{$medium}px)";
+$small-and-up: "(min-width: #{$narrow}px)";
+$narrow-only: "(max-width: #{$narrow - 1}px)";
+$small-only: "(max-width: #{$medium - 1}px)";
+$medium-only: "(max-width: #{$large - 1}px)";
+
+.narrow-only {
+    @include mq($small-and-up) {
+        // >= 321px
+        display: none !important;
+    }
+}
+
+.small-only {
+    @include mq($medium-and-up) {
+        // >= 801px
+        display: none !important;
+    }
+}
+
+.medium-only {
+    @include mq($large-and-up) {
+        // >= 1025px
+        display: none !important;
+    }
+}
+
+.narrow-up {
+    @include mq($narrow-only) {
+        // < 321 px
+        display: none !important;
+    }
+}
+
+.medium-up {
+    @include mq($small-only) {
+        // < 801px
+        display: none !important;
+    }
+}
+
+.large-only {
+    @include mq($medium-only) {
+        // < 1025px
+        display: none !important;
+    }
+}

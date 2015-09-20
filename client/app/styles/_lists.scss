@@ -1,0 +1,19 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list--h-to-v {
+  > .list-item {
+    display: inline-block;
+
+    @include mq($small-and-up) {
+      display: list-item;
+    }
+  }
+}
+
+.list-item {
+  margin-bottom: 10px;
+}

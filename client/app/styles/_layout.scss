@@ -1,0 +1,52 @@
+.l-full {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @include mq($small-and-up) {
+    flex-direction: row;
+  }
+}
+
+.l-full--padding {
+  padding: 15px;
+}
+
+.l-skinny {
+  overflow-y: scroll;
+  overflow-x: scroll;
+  white-space: nowrap;
+  position: relative;
+
+  // &:after {
+  //   content: '';
+  //   position: absolute;
+  //   right: -1px;
+  //   top: 0;
+  //   bottom: 0;
+  //   width: 100px;
+  //   @include background(linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1)))
+  // }
+
+  @include mq($small-and-up) {
+    margin-right: 25px;
+    overflow-x: auto;
+    white-space: normal;
+  }
+}
+
+.l-flex {
+  display: flex;
+
+  flex: 1;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+.l-graybg {
+  flex: 1;
+
+  height: 100%;
+  background-color: #eaeaea;
+}
+
