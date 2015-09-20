@@ -32,7 +32,7 @@ app.get('/phrases/:phrase_id', function(req, res) {
 
 app.post('/phrases', function(req, res) {
   var phrase = req.body.phrase,
-    words = phrase.words;
+    words = phrase ? phrase.words : false;
 
   if (!words || !words.length) {
     res.status(422).json({message: 'words required'});
@@ -52,6 +52,7 @@ app.post('/phrases', function(req, res) {
         res.status(500).json({message: "that's an error", erro: err});
         return console.error('error running query', err);
       }
+      res.json(results);
     });
   });
 });
