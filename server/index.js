@@ -52,7 +52,7 @@ app.post('/phrases', function(req, res) {
         res.status(500).json({message: "that's an error", erro: err});
         return console.error('error running query', err);
       }
-      res.json(results);
+      res.json(results.rows[0]);
     });
   });
 });
