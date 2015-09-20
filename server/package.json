@@ -1,0 +1,23 @@
+{
+  "name": "radiomadlibs-db",
+  "version": "0.0.1",
+  "description": "db middleware for radiomadlibs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noslouch/radiomadlibs.git"
+  },
+  "author": "brian whitton et. al.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noslouch/radiomadlibs/issues"
+  },
+  "homepage": "https://github.com/noslouch/radiomadlibs#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "pg": "^4.4.1"
+  }
+}
