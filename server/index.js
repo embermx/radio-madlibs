@@ -1,6 +1,6 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
-  cors = requier('cors'),
+  cors = require('cors'),
   pg = require('pg'),
   app = express(),
   connectionString = process.env.DATABASE_URL,
