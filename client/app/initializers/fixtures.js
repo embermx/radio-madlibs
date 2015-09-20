@@ -14,6 +14,7 @@ export function initialize(container, application) {
   const files = debugCreateAudio();
   application.register('fixtures:files', files, {instantiate: false});
   application.inject('route:index', 'files', 'fixtures:files');
+  application.inject('route:view', 'files', 'fixtures:files');
 }
 
 export default {
