@@ -16,10 +16,10 @@ app.get('/:phrase_id', function(req, res) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT words FROM $1 WHERE id = $2', [table, id], function(err, result) {
+    client.query('SELECT words FROM radiomadlib_phrases WHERE id = $1', [id], function(err, result) {
       done();
       if (err) {
-        res.status(500).json(err);
+        res.status(500).json({message: "that's an error", error: err});
         return console.error('error running query', err);
       }
       res.json({id: id, words: result});
@@ -40,10 +40,10 @@ app.post('/', function(req, res) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('INSERT INTO $1 VALUES ("{$2})") RETURNING id', [table, words], function(err, results) {
+    client.query('INSERT INTO radiomadlib_phrases VALUES ("{$1})") RETURNING id', [words], function(err, results) {
       done();
       if (err) {
-        res.status(500).json(err);
+        res.status(500).json({message: "that's an error", erro: err});
         return console.error('error running query', err);
       }
     });
