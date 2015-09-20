@@ -27,7 +27,7 @@ app.get('/:phrase_id', function(req, res) {
   });
 });
 
-app.post('/', function(req, res) {
+app.post('/phrases', function(req, res) {
   var words = req.body.words;
 
   if (!words || !words.length) {
