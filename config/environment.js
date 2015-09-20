@@ -4,6 +4,8 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'radio-madlibs',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    firebase: 'https://radio-madlibs.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {

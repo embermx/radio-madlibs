@@ -3,30 +3,33 @@ import soundManager from 'soundManager';
 
 const {
   A:emberArray,
-  get
+  get,
+  set
 } = Ember;
 
 export default Ember.Service.extend({
   queue: emberArray([]),
+  addToQueue(obj) {
+     const queue = get(this, 'queue');
+     const sound = soundManager.createSound(obj);
+     queue.pushObject(sound.id);
+  },
+  removeFromQueue(obj) {
+    const queue = get(this, 'queue');
+    const id = get(obj, 'id');
+    queue.removeObject(id);
+  },
   playAll() {
+    const queue = get(this, 'queue');
+    set(this, 'playQueue', queue.copy());
     this.playNext();
   },
   playNext() {
-    const queue = get(this, 'queue');
-    const upNext = queue.pop();
+    const playQueue = get(this, 'playQueue');
+    const upNext = playQueue.shift();
 
     soundManager.play(upNext, {
       onfinish: this.playNext.bind(this)
     });
   },
-  // debugLoadAudio() {
-  //   soundManager.onready(this._debugLoadAllAudio.bind(this));
-  // },
-  // _debugLoadAllAudio() {
-  //   const queue = get(this, 'queue');
-  //   AUDIO.forEach(s => {
-  //     const sound = soundManager.createSound({ url: s });
-  //     queue.pushObject(sound.id);
-  //   });
-  // },
 });

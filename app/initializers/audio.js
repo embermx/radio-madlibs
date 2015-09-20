@@ -12,5 +12,5 @@ export function initialize(/* container, application */) {
 
 export default {
   name: 'audio',
-  initialize: initialize
+  initialize
 };

@@ -5,5 +5,12 @@ const {
 } = Ember;
 
 export default Component.extend({
-
+  actions: {
+    myStartAction: function(content) {
+     //console.log('myStartAction', content);
+    },
+    myEndAction: function(content) {
+     //console.log('myEndActin', content);
+    },
+  }
 });

@@ -1,15 +1,18 @@
 import Ember from 'ember';
 
 const {
+  get
+} = Ember;
+
+const {
   Component
 } = Ember;
 
 export default Component.extend({
-  tagName: '',
-
   actions: {
-    removeWord(word) {
-      this.sendAction('removeWord', word);
+    remove() {
+      const word = get(this, 'word');
+      this.sendAction('remove', word);
     }
   }
 });

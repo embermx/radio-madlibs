@@ -2,6 +2,12 @@
     {{audio-list availableAudio=availableAudio}}
   </div>
   <div class="l-flex">
-    {{phrase-choices phraseChoices=phraseQueue}}
+    {{#draggable-object-target
+      action='addToQueue'
+      dragOverAction='myOverAction'
+      dragOutAction='myDragOutAction'
+      overrideClass='l-graybg'}}
+      {{phrase-choices phrase=phrase removeWord='removeWord'}}
+    {{/draggable-object-target}}
   </div>
 
