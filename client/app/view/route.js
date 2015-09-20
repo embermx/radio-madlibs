@@ -1,7 +1,21 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+const {
+  Route,
+  inject,
+  get,
+  computed,
+  RSVP
+} = Ember;
+
+export default Route.extend({
   model(params) {
-    return this.store.find('phrase', params.phrase_id);
+    const store = get(this, 'store');
+    const fixtures = get(this, 'files');
+
+    return RSVP.hash({
+      availableAudio: fixtures,
+      phrase: store.find('phrase', params.phrase_id)
+     });
   }
 });
