@@ -52,7 +52,35 @@ app.post('/phrases', function(req, res) {
         res.status(500).json({message: "that's an error", erro: err});
         return console.error('error running query', err);
       }
-      res.json(results.rows[0]);
+      res.json({phrase: results.rows[0]});
+    });
+  });
+});
+
+app.put('/phrases', function(req, res) {
+  var phrase = req.body.phrase,
+    id = phrase.id,
+    words = phrase ? phrase.words : false;
+
+  if (!words || !words.length) {
+    res.status(422).json({message: 'words required'});
+    return;
+  }
+
+  pg.connect(connectionString, function(err, client, done) {
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    var wordIds = words.join(','),
+      query = "UPDATE radiomadlib_phrases set words = '{" + wordIds + "}' where id = " + id;
+
+    client.query(query, function(err, results) {
+      done();
+      if (err) {
+        res.status(500).json({message: "that's an error", erro: err});
+        return console.error('error running query', err);
+      }
+      res.json({phrase: results.rows[0]});
     });
   });
 });
