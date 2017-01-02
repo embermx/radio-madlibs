@@ -1,7 +1,10 @@
 {{#each availableAudio as |audio|}}
   <li class="list-item">
-  {{#draggable-object content=audio dragStartAction='myStartAction' dragEndAction='myEndAction'}}
-    <button class="btn">{{audio.label}}</button>
+  {{#draggable-object
+    content=audio
+    dragStartAction='myStartAction'
+    dragEndAction='myEndAction'}}
+    <button class="btn btn--red" {{action 'addToQueue' audio}}>{{audio.label}}</button>
   {{/draggable-object}}
   </li>
 {{/each}}

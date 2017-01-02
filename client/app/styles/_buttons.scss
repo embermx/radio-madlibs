@@ -1,7 +1,9 @@
 .btn {
   @include appearance(none);
   background-color: white;
-  border: 1px solid #333;
+  border: none;
+  font-family: 'Oswald';
+  font-weight: 300;
 }
 
 .btn--big {
@@ -9,6 +11,17 @@
   font-size: 2rem;
 }
 
-.btn--row {
-  margin-bottom: 15px;
+.btn--red {
+  background-color: $red;
+  color: white;
+}
+
+.btn--blue {
+  background-color: $blue;
+  color: white;
+}
+
+.btn--green {
+  background-color: $green;
+  color: white;
 }

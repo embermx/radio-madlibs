@@ -14,5 +14,8 @@ export default Component.extend({
     myEndAction: function(content) {
      //console.log('myEndActin', content);
     },
+    addToQueue(audio) {
+      this.sendAction('action', audio);
+    }
   }
 });

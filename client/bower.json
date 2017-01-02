@@ -14,7 +14,8 @@
     "qunit": "~1.18.0",
     "ember-cli-soundmanager-shim": "noslouch/ember-cli-soundmanager-shim",
     "soundmanager": "scottschiller/SoundManager2#V2.97a.20150601",
-    "firebase": "^2.1.0"
+    "firebase": "^2.1.0",
+    "font-awesome": "~4.4.0"
   },
   "resolutions": {
     "soundmanager": "V2.97a.20150601",

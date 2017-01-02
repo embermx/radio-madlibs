@@ -24,6 +24,9 @@ export default Ember.Service.extend({
     const id = get(obj, 'id');
     queue.removeObject(id);
   },
+  clearQueue() {
+    set(this, 'queue', emberArray([]));
+  },
   playAll() {
     const queue = get(this, 'queue');
     set(this, 'playQueue', queue.copy());

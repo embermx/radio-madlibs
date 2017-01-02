@@ -14,8 +14,7 @@ export default Route.extend(ActionHandlerMixin, {
 
     return RSVP.hash({
       availableAudio: fixtures,
-      //phrase: store.find('phrase', params.phrase_id)
-      phrase: store.createRecord('phrase', {words: [5,8,10]})
+      phrase: store.find('phrase', params.phrase_id)
      });
   },
 

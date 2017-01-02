@@ -1,3 +1,11 @@
-<div class="l-full l-full--padding">
+<div class="l-full">
+  <div class="l-maxwidth l-shadow">
+    <img class="logo" src="/assets/img/logo.png">
+  </div>
+
   {{outlet}}
+
+  {{#if modalIsOpen}}
+    {{share-dialog model=currentModel}}
+  {{/if}}
 </div>

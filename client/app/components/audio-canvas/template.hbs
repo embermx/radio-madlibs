@@ -1,15 +1,33 @@
-  <div class="l-skinny">
-    {{audio-list availableAudio=availableAudio}}
+<div class="l-main">
+  <div class="l-skinny l-yellowbg l-lr-padding">
+    <h2 class="t-title t-center">Phrase Picker</h2>
+    <div class="l-h-scroll">
+      {{audio-list
+        action='addToQueue'
+        availableAudio=availableAudio}}
+    </div>
   </div>
   <div class="l-flex">
+    <h2 class="t-title t-center">Your Madlib</h2>
     {{#draggable-object-target
       action='addToQueue'
       dragOverAction='myOverAction'
       dragOutAction='myDragOutAction'
-      overrideClass='l-graybg'}}
+      overrideClass='l-flexrows l-scroll l-lr-padding'}}
       {{phrase-choices phrase=chosenPhrase removeWord='removeWord'}}
     {{/draggable-object-target}}
-  {{play-button action='play'}}
+    <div class="l-greenbg">
+      <div class="l-flexrows l-flexrows--flush l-lr-padding l-tb-padding">
+        <button class="btn btn--green" {{action 'play'}}>
+          <i class="fa fa-play-circle"></i>
+          Play</button>
+        <button class="btn btn--green" {{action 'clear'}}>
+         <i class="fa fa-undo"></i>
+         Clear</button>
+        <button class="btn btn--green" {{action 'share'}}>
+          <i class="fa fa-share"></i>
+          Share</button>
+      </div>
+    </div>
   </div>
-
-
+</div>

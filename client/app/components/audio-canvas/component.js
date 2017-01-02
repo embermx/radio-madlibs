@@ -23,12 +23,23 @@ export default Component.extend({
     },
     myOverAction: function() {
       //will notify you when an object is being dragged over the drop target 
+      console.log('overAction', this.toString());
     },
     myDragOutAction: function() {
       //will notify you when an object has left the drop target area 
+      console.log('outAction', this.toString());
     },
     removeWord(word) {
       this.sendAction('removeWord', word);
+    },
+    play() {
+      this.sendAction('play');
+    },
+    clear() {
+      this.sendAction('clear');
+    },
+    share() {
+      this.sendAction('share');
     }
   }
 });
